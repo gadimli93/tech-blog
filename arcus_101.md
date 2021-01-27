@@ -466,21 +466,21 @@ public class HelloArcus {
         
   // enables log4j logger.
   // you can use the JVM environment variables 
-     as shown below without adding them directly to the code.
+  //   as shown below without adding them directly to the code.
        
-        System.setProperty("net.spy.log.LoggerImpl", 
-                "net.spy.memcached.compat.log.Log4JLogger");
+        System.setProperty("net.spy.log.LoggerImpl", "net.spy.memcached.compat.log.Log4JLogger");
 
   // create an arcus client object.
   // - arcusAdmin : address of the admin server (ZooKeeper)
-       that manages groups of Arcus cache servers.
+  //     that manages groups of Arcus cache servers.
   // - serviceCode : code value for the set of Arcus 
-       cache servers that assigned to a user.
+   //    cache servers that assigned to a user.
   // - connectionFactoryBuilder : client creation options.
   //   in summary,
  // with a combination of arcusAdmin and serviceCode 
-    set of cache servers can be obtained and connected.
-this.arcusClient = ArcusClient.createArcusClient(arcusAdmin, serviceCode, new ConnectionFactoryBuilder());
+ //   set of cache servers can be obtained and connected.
+    
+     this.arcusClient = ArcusClient.createArcusClient(arcusAdmin, serviceCode, new ConnectionFactoryBuilder());
     }
 
     public boolean sayHello() {
@@ -491,7 +491,7 @@ this.arcusClient = ArcusClient.createArcusClient(arcusAdmin, serviceCode, new Co
   // almost all of Arcus's APIs are meant to return java Future.
  
 // make sure to perform future.get() explicitly unless
-   it's a server in asynchronous processing.
+ //  it's a server in asynchronous processing.
  
         // wait for a response to be returned.
         future = this.arcusClient.set
@@ -513,10 +513,11 @@ this.arcusClient = ArcusClient.createArcusClient(arcusAdmin, serviceCode, new Co
         
  // lookup the value of Arcus's "test:hello" key.
  // in Arcus you will guided explicitly to specify a timeout
-    value for all possible commands that there are
+ //   value for all possible commands that there are.
+ 
 // in Arcus  user requires to use an API that starts with async 
-   for all requests except set, so that all possible commands 
-   explicitly specify a timeout value.
+//   for all requests except set, so that all possible commands 
+//   explicitly specify a timeout value.
        future = this.arcusClient.asyncGet("test:hello");       
         try {
             result = (String)future.get(700L, 
