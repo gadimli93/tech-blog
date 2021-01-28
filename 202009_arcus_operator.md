@@ -447,5 +447,3 @@ Since the last year, the ARCUS Operator has been reliably operating on real serv
 - Helm Chart Support for resource packaging.
 
 Unfortunately, the ARCUS Operator is not public on GitHub and it is only available to customers who have subscribed to Enterprise Edition. For further questions regarding the ARCUS Operator or anything related to ARCUS please feel free to contact support@jam2in.com.
-
-*This article is an English translation of the ARCUS operator on Kubernetes" by Hyeong Jun Yun*
