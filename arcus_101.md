@@ -74,7 +74,7 @@ that they belong to, and finally a list of alive nodes in each cluster.
 
 ## Establish a working environment
 
-<img src="images/202101_logos.png"></img>
+<img src="images/202101_logos.jpg"></img>
 
 If you are not working on a Linux operating system, you can easily run Linux software in your current OS by setting up a  virtual machine with a free Linux distribution.
 Virtual machines allow you to run any operating system on your desktop. You can install either [VirtualBox](http://virtualbox.org) or [VMware Workstation Player](https://www.vmware.com/products/workstation-player.html). Currently, 
