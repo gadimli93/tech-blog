@@ -1,4 +1,4 @@
-# ARCUS Data Distribution Storage Policy
+# ARCUS Data Distribution Policy
 
 <img src="images/arcus_data_distribution_main.png"></img>
 
@@ -51,7 +51,7 @@ Therefore, when the data is distributed by the hashing method, even if the total
 
 <img src="images/202101_arcus_data_distribution_chash_2_en.png"></img>
 
-### 3. Ketama consistent hashing
+### 3. Ketama Consistent Hashing
 
 Ketama consistent hashing resolves the downside of general Consistent hashing. Same as Consistent hashing, it forms a hash ring with hash values to distribute data. But unlike Consistent hashing that has one hash value per node, Ketama is characterized by one node having `N` hash values. If each node creates as many virtual nodes as `N` and gets hash values, the hash ring will be filled with the hash values of nodes. In this case, you will have a distributed algorithm that evenly distributes data, since the areas of the nodes in the hash ring will be in some uniformity.
 
