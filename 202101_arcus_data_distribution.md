@@ -33,7 +33,7 @@ Before you set data distribution policies you have to consider the following con
  - How much data do we need to relocate, when the list of cluster nodes changes due to the addition or removal of nodes?
  - Are the data uniformly distributed across the nodes?
 
-From now on I will introduce three data distribution policies that are mainly used in key-value stores.
+From now on, I will introduce three data distribution policies that are mainly used in key-value stores.
 
 ### 1. Data Distribution Policy with Modulo
 
@@ -47,7 +47,7 @@ The consistent hashing method uses the hash function to obtain a hash value from
 
 <img src="images/202101_arcus_data_distribution_chash_1_en.png"></img>
 
-Therefore, when the data is distributed by the hashing method, even if the total number of nodes changed when nodes are added or removed to/from the cluster, only the `'1/total number of nodes'`amount of data is relocated. Compared to modulo this will cause very few relocations. However, nodes may not be evenly distributed across the hash ring, since the size of the area that nodes are responsible for can be different.
+Therefore, when the data is distributed by the hashing method, even if the total number of nodes changed when nodes are added or removed to/from the cluster, only the `'1/total number of nodes'` amount of data is relocated. Compared to modulo this will cause very few relocations. However, nodes may not be evenly distributed across the hash ring, since the size of the area that nodes are responsible for can be different.
 
 <img src="images/202101_arcus_data_distribution_chash_2_en.png"></img>
 
@@ -59,7 +59,7 @@ Ketama consistent hashing resolves the downside of general Consistent hashing. S
 
 ## ARCUS Data Distribution Policy
 
-Among the distribution policies that I have introduced earlier ARCUS uses the *Ketama consistent hashing* policy. Now let’s take a closer look at the algorithm that ARCUS uses to configure a hash ring. ARCUS servers and client libraries generate a hash ring once they get a list of the nodes in the cluster from ZooKeeper. First for each cache node, by repeating the process of adding a number that starts at 1 and increases in each turn at the end of the name of the cache node (using a `IP: Port` string as a node name), we create 40 (by `default`) virtual nodes. Then, by hashing each virtual node name with the md5 hash function that shows good performance, we generate a 128 bits hash value and by dividing it we get four 32 bits hash values. Thereby when the hash values of a cache node created as explained before, it generates `40 virtual nodes ✕ 4 hash values per virtual node = total 160 hash values'` and takes a part in the hash ring with those values.
+Among the distribution policies that I have introduced earlier ARCUS uses the **Ketama consistent hashing** policy. Now let’s take a closer look at the algorithm that ARCUS uses to configure a hash ring. ARCUS servers and client libraries generate a hash ring once they get a list of the nodes in the cluster from ZooKeeper. First for each cache node, by repeating the process of adding a number that starts at 1 and increases in each turn at the end of the name of the cache node (using a `IP: Port` string as a node name), we create 40 (by `default`) virtual nodes. Then, by hashing each virtual node name with the md5 hash function that shows good performance, we generate a 128 bits hash value and by dividing it we get four 32 bits hash values. Thereby when the hash values of a cache node created as explained before, it generates `'40 virtual nodes ✕ 4 hash values per virtual node = total 160 hash values'` and takes a part in the hash ring with those values.
 
 ```
 ip:port + repetition = 10.0.0.1:11211-1
@@ -96,7 +96,7 @@ for (int i = 0; i < config.getNodeRepetitions() / 4; i++) {
 }
 ```
 
-Once you’ve placed the hash values of the nodes in the hash ring (as I already mentioned earlier on Ketama consistent hashing) when you need to store some data it will find the node that’s responsible for the key in the hash ring which is generated as a result of hashing a data key. One thing you need to be cautious about is *hash collisions* caused by the countless hash values generated when the number of nodes in the cluster increases. If ARCUS encounters this issue, it sorts node names alphabetically and ensures that a preceding cache node occupies that hash point. Also, as I already mentioned if you use Ketama consistent hashing when a change occurs in the server list, as many as `'change node count/ total node count'` of cache data will be relocated, which may cause a `stale data`. ARCUS has a `scrub stale feature` that deletes these `stale data`. For detailed information about stale data, please refer to the ["Significance Of Fault Tolerance In The Cache System and How to Provide It"](https://medium.com/jam2in/significance-of-fault-tolerance-in-the-cache-system-and-how-to-provide-it-ea83258b0d32).
+Once you’ve placed the hash values of the nodes in the hash ring (as I already mentioned earlier on Ketama consistent hashing) when you need to store some data it will find the node that’s responsible for the key in the hash ring which is generated as a result of hashing a data key. One thing you need to be cautious about is **hash collisions** caused by the countless hash values generated when the number of nodes in the cluster increases. If ARCUS encounters this issue, it sorts node names alphabetically and ensures that a preceding cache node occupies that hash point. Also, as I already mentioned if you use Ketama consistent hashing when a change occurs in the server list, as many as `'change node count/ total node count'` of cache data will be relocated, which may cause a `stale data`. ARCUS has a `scrub stale` feature that deletes these `stale data`. For detailed information about `stale data`, please refer to the ["Significance Of Fault Tolerance In The Cache System and How to Provide It"](https://medium.com/jam2in/significance-of-fault-tolerance-in-the-cache-system-and-how-to-provide-it-ea83258b0d32).
 
 ## Conclusion
 
