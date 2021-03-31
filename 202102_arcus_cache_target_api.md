@@ -78,10 +78,7 @@ Append the Arcus Cache Key creation time information after the Arcus Cache Key s
 ```
 
 
-All `arcus_apps`, `cache_target_list`, `service_code` znodes that store `cache target API`s are all generated in persistent type and the znodes that store the `cache target APIs`
-data are created in `persistent and sequence types`. The reason why we use the *sequence type* is to easily determine creation, deletion, and other `cache target API` property 
-updates. The `cache target API` property update operation - removes the existing znode and generates a new znode of the same key with updated properties, thereby causes 
-the corresponding znode's sequence value to be increased. For instance, with the existence of `com.service.BoardService.getBoard-0000000000` key's znode that has a cache
+All `arcus_apps`, `cache_target_list`, `service_code` znodes that store `cache target API`s are all generated in persistent type and the znodes that store the `cache target APIs` data are created in `persistent and sequence types`. The reason why we use the *sequence type* is to easily determine creation, deletion, and other `cache target API` property updates. The `cache target API` property update operation - removes the existing znode and generates a new znode of the same key with updated properties, thereby causes the corresponding znode's sequence value to be increased. For instance, with the existence of `com.service.BoardService.getBoard-0000000000` key's znode that has a cache
 property information (details) of `com.service.BoardService.getBoard`, and when making an update in that API's cache property (by removing the existing znode and 
 generating a new znode at the same time) a new znode with `com.service.BoardService.getBoard-0000000001` key will be created. Therefore, the ARCUS Application lookups 
 only the child nodes in `/arcus_apps/cache_target_list/service-code` znode and allows you to check creation, deletion, and update as the sequence value in its own` cache 
@@ -146,19 +143,19 @@ In the *ARCUS Operational Tool*, we have developed a `cache target` feature to m
 Below `cache target API` list of a specific service code is shown. In this scenario, our service code's name is a `test`. By clicking on a specific `cache target API`, 
 you can check the detailed JSON property.
 
-<imag src="/images/202102_arcus_cache_target_arcus_admin_tool_1.png"></img>
+<img src="/images/202102_arcus_cache_target_arcus_admin_tool_1.png"></img>
 
 The below image displays how to create a new `cache target API`. A user enters the property values that will be made as a JSON property and creates the corresponding 
 `cache target API`. Relatively, delete and update operations of `cache target API` can be performed in the same manner.
 
-<imag src="/images/202102_arcus_cache_target_arcus_admin_tool_2.png"></img>
+<img src="/images/202102_arcus_cache_target_arcus_admin_tool_2.png"></img>
 
 To recap briefly what has been discussed so far on ARCUS Application's `cache target API` management feature is as follows. When a user creates, deletes, or updates 
 the `cache target APIs` by using the `cache target` feature of ARCUS Operational Tool, these changes are stored and managed by ZooKeeper Ensemble, where ZooKeeper Watcher
 monitors these change events and passes them to the ARCUS Common Module. As explained earlier, ARCUS Common Module lookups for updated `cache target API`, manages 
 them with `cache item map`. ARCUS Cache will be automatically applied only for `cache target APIs` that stored in the `cache item map`.
 
-<imag src="/images/arcus_cache_target_logic_en.png"></img>
+<img src="/images/arcus_cache_target_logic_en.png"></img>
 
 ## Application Method to the ARCUS Common Module
 
