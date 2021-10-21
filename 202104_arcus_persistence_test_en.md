@@ -1,6 +1,6 @@
 # Performance Test of ARCUS Data Persistence
 
-<img src="images/202103_arcus_persistence_main_title_en.png"></img
+<img src="images/202103_arcus_persistence_test_main_title_low.png"></img
 
 In the previous blog, [Overview and Usage of Persistence Feature to Preserve Data Permanently in ARCUS Cache System](https://github.com/jam2in/arcus-works/blob/master/techblog/202012_arcus_persistence_english.md),
 I have introduced ARCUS Persistence and showed you essential ways to send requests to it with telnet and memtier_benchmark tools. As I have mentioned in the previous blog, ARCUS Persistence has been implemented
