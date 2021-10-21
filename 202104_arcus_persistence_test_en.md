@@ -1,7 +1,6 @@
 # Performance Test of ARCUS Data Persistence
 
-#### Author: 장수환
-#### Translator: Nushaba Gadimli
+<img src="images/202103_arcus_persistence_main_title_en.png"></img
 
 In the previous blog, [Overview and Usage of Persistence Feature to Preserve Data Permanently in ARCUS Cache System](https://github.com/jam2in/arcus-works/blob/master/techblog/202012_arcus_persistence_english.md),
 I have introduced ARCUS Persistence and showed you essential ways to send requests to it with telnet and memtier_benchmark tools. As I have mentioned in the previous blog, ARCUS Persistence has been implemented
@@ -57,7 +56,7 @@ Considering the client load, the below-shown running options must be set properl
 ## ARCUS Persistence Settings
 
 In the `default_engine.conf` file that has the settings for ARCUS `default` engine operation, Persistence related settings also have been set as shown in the below sample.
-You can check the details of the Persistence setting in the [Overview and Usage of Persistence Feature to Preserve Data Permanently in ARCUS Cache System](https://github.com/jam2in/arcus-works/blob/master/techblog/202012_arcus_persistence_english.md).
+You can check the details of the Persistence setting in the [Overview and Usage of Persistence Feature to Preserve Data Permanently in ARCUS Cache System](https://github.com/gadimli93/tech-blog/blob/main/202012_arcus_persistence.md).
 Therefore, here I will only show you the values to be set according to each test case.
 
 ```
